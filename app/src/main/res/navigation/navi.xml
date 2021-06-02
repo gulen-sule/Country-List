@@ -9,18 +9,18 @@
         android:id="@+id/firstFragment"
         android:name="com.example.kotlincountrylist.FirstFragment"
         android:label="fragment_first"
-        tools:layout="@layout/fragment_first" >
+        tools:layout="@layout/fragment_first">
         <action
-            android:id="@+id/action_firstFragment_to_secFragment"
-            app:destination="@id/secFragment" />
+            android:id="@+id/action_firstFragment_to_countryFragment2"
+            app:destination="@id/countryFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/secFragment"
-        android:name="com.example.kotlincountrylist.SecFragment"
-        android:label="fragment_sec"
-        tools:layout="@layout/fragment_sec" >
+        android:id="@+id/countryFragment2"
+        android:name="com.example.kotlincountrylist.CountryFragment"
+        android:label="CountryFragment"
+        tools:layout="@layout/fragment_country">
         <action
-            android:id="@+id/action_secFragment_to_firstFragment"
+            android:id="@+id/action_countryFragment2_to_firstFragment"
             app:destination="@id/firstFragment" />
     </fragment>
 </navigation>

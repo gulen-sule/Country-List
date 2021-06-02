@@ -3,39 +3,60 @@ package com.example.kotlincountrylist.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlincountrylist.FirstFragmentDirections
 import com.example.kotlincountrylist.R
+import com.example.kotlincountrylist.databinding.FragmentCountryBinding
 import com.example.kotlincountrylist.databinding.FragmentFirstBinding
+import com.example.kotlincountrylist.databinding.ItemSecBinding
 import com.example.kotlincountrylist.model.Model
 
-class FirstAdapter(val liste:ArrayList<Model>) :
-    RecyclerView.Adapter<FirstAdapter.FirstViewHolder>() {
-    private var myList:ArrayList<Model>?=null
+class FirstAdapter(modelList: ArrayList<Model>) : RecyclerView.Adapter<FirstAdapter.FirstViewHolder>() , ItemClickListener{
 
-    class FirstViewHolder (val binding:FragmentFirstBinding): RecyclerView.ViewHolder(binding.root) {
-        var eventBinding:FragmentFirstBinding=binding//class elemani olarak tanımladım
+    private var modelList: ArrayList<Model> = arrayListOf()
 
+    class FirstViewHolder(binding: ItemSecBinding) : RecyclerView.ViewHolder(binding.root) {
+        val itemBinding: ItemSecBinding = binding//class elemani olarak tanımladım
+
+    }
+
+    init {
+        this.modelList = modelList
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FirstAdapter.FirstViewHolder {
-       val binding:FragmentFirstBinding=DataBindingUtil.inflate(LayoutInflater.from(parent.context),R.layout.fragment_first,parent,false)
+    ): FirstViewHolder {
+        //val inflater=LayoutInflater.from(parent.context)
+        val binding: ItemSecBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.item_sec,
+            parent,
+            false
+        )
         return FirstViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FirstAdapter.FirstViewHolder, position: Int) {
-       val event=holder.eventBinding
-        event.countryError.visibility=View.INVISIBLE
-        event.Countryloading.visibility=View.INVISIBLE
-        event.countryList
+    override fun onBindViewHolder(holder: FirstViewHolder, position: Int) {
+        holder.itemBinding.data = modelList[position]
+        holder.itemView.setOnClickListener {
+            val action=FirstFragmentDirections.actionFirstFragmentToCountryFragment2()
+            //FragmentCountryBinding
+            Navigation.findNavController(it).navigate(action)
+        }
+
     }
 
     override fun getItemCount(): Int {
-        return liste.size
+        return modelList.size
     }
 
+    override fun onItemClick(view: View) {
+        super.onItemClick(view)
+    }
 
 }

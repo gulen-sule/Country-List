@@ -7,6 +7,7 @@ import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlincountrylist.FirstFragment
 import com.example.kotlincountrylist.FirstFragmentDirections
 import com.example.kotlincountrylist.R
 import com.example.kotlincountrylist.databinding.FragmentCountryBinding
@@ -57,6 +58,8 @@ class FirstAdapter(modelList: ArrayList<Model>) : RecyclerView.Adapter<FirstAdap
 
     override fun onItemClick(view: View) {
         super.onItemClick(view)
+        view.setOnClickListener {
+        }
     }
 
 }

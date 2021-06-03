@@ -3,21 +3,22 @@ package com.example.kotlincountrylist.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.kotlincountrylist.FirstFragment
 import com.example.kotlincountrylist.FirstFragmentDirections
 import com.example.kotlincountrylist.R
 import com.example.kotlincountrylist.databinding.FragmentCountryBinding
 import com.example.kotlincountrylist.databinding.FragmentFirstBinding
 import com.example.kotlincountrylist.databinding.ItemSecBinding
+import com.example.kotlincountrylist.model.Country
 import com.example.kotlincountrylist.model.Model
 
-class FirstAdapter(modelList: ArrayList<Model>) : RecyclerView.Adapter<FirstAdapter.FirstViewHolder>() , ItemClickListener{
+class FirstAdapter(modelList: List<Country>) : RecyclerView.Adapter<FirstAdapter.FirstViewHolder>() , ItemClickListener{
 
-    private var modelList: ArrayList<Model> = arrayListOf()
+    private var modelList: List<Country>
 
     class FirstViewHolder(binding: ItemSecBinding) : RecyclerView.ViewHolder(binding.root) {
         val itemBinding: ItemSecBinding = binding//class elemani olarak tanımladım
@@ -43,7 +44,15 @@ class FirstAdapter(modelList: ArrayList<Model>) : RecyclerView.Adapter<FirstAdap
     }
 
     override fun onBindViewHolder(holder: FirstViewHolder, position: Int) {
-        holder.itemBinding.data = modelList[position]
+        val context = holder.itemView.context
+        val country = modelList[position]
+
+        holder.itemBinding.data = country
+
+        Glide.with(context).load(country.countryFlag)
+            .skipMemoryCache(true)
+            .into(holder.itemBinding.flagIV)
+
         holder.itemView.setOnClickListener {
             val action=FirstFragmentDirections.actionFirstFragmentToCountryFragment2()
             //FragmentCountryBinding

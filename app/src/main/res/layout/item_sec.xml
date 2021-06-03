@@ -7,7 +7,8 @@
 
         <variable
             name="data"
-            type="com.example.kotlincountrylist.model.Model" />
+            type="com.example.kotlincountrylist.model.Country" />
+
         <variable
             name="listener"
             type="com.example.kotlincountrylist.adapter.ItemClickListener" />
@@ -21,7 +22,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/flagIV"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:padding="3dp"
@@ -49,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{data.region.toString()}"
+                android:text="@{data.countryRegion.toString()}"
                 android:textSize="15dp" />
 
 

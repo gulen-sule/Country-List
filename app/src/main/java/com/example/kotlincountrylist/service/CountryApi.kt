@@ -10,6 +10,7 @@ import retrofit2.http.GET
 
 interface CountryApi {
     @GET("/atilsamancioglu/IA19-DataSetCountries/master/countrydataset.json")
-    fun getCountries(): Call<ArrayList<Country>>
+    fun getCountries(): Call<ArrayList<Country>>//data class'imi iceren arraylistimi donen method
+    //retrofit object olusturduktan sonra bununla response cevaplari cekiyorum
 }
 

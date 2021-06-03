@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincountrylist.adapter.FirstAdapter
 import com.example.kotlincountrylist.model.Country
@@ -24,7 +25,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class FirstFragment : Fragment() {
     private lateinit var viewModel: FirstViewModel
 
-    //  private lateinit var myList: ArrayList<Model>
     private lateinit var recycler: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var errorMessage: TextView
@@ -42,44 +42,43 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recycler = view.findViewById(R.id.countryList)
+        progressBar = view.findViewById(R.id.Countryloading)
+        errorMessage = view.findViewById(R.id.countryError)
+        progressBar.visibility = View.INVISIBLE
+        errorMessage.visibility = View.INVISIBLE
         getCountries(completed = {
 
-            // myList = arrayListOf(country, country2, country3, country28, country4, country6, country5, country7, country37)
-            recycler = view.findViewById(R.id.countryList)
-            progressBar = view.findViewById(R.id.Countryloading)
-            errorMessage = view.findViewById(R.id.countryError)
-
             requireActivity().runOnUiThread {//bunsuz da calisiyor ne ise yaradigini tam anlamadım
-                val adapter = FirstAdapter(countries)
-                recycler.adapter = adapter
+                val adapter = FirstAdapter(countries, onClick = { country ->//it ->Country
+                    val action = FirstFragmentDirections.actionFirstFragmentToCountryFragment2(country)//gondermek istedigim datayi navigaton actionina verdim
+                    //cunku navi.xml dosyamda arguman aldigini soyledim
+                    Navigation.findNavController(view).navigate(action)
+                })
+                recycler.adapter = adapter//adapterimi recyclerView'ima ekledim
             }
-
-            progressBar.visibility = View.INVISIBLE
-            errorMessage.visibility = View.INVISIBLE
-
         })
     }
 
     //Bu metot asenksron çalışıyor...
-    private fun getCountries(completed: (ArrayList<Country>) -> Unit) {
+    private fun getCountries(completed: (ArrayList<Country>) -> Unit) {//bitip bitmedigini kontrol edebilmek icin completed func
         val BASE_URL = "https://raw.githubusercontent.com/"
         val retrofit = Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(CountryApi::class.java)
+            .create(CountryApi::class.java)//create'e olusturmasi icin get metodu iceren interface'imi atiyorum
 
         val response = retrofit.getCountries()
 
-        response.enqueue(object : Callback<ArrayList<Country>> {
+        response.enqueue(object : Callback<ArrayList<Country>> {//asenkron calistirabilmek icin coroutines ve suspended function veya bu Callback
+        // interface'inden object olusturmak gerekiyor
             override fun onResponse(call: Call<ArrayList<Country>>, response: Response<ArrayList<Country>>) {
                 Log.d("responseSuccess", response.code().toString())
                 Log.d("responseSuccess", response.body().toString())
-                countries = response.body()!!
 
-                completed(countries)
+                countries = response.body()!!//arraylist<country> donuyor
+                completed(countries)//veri cekimi bittiginin bildirimini gonder
 
-                //countries[0].countryName
             }
-
             override fun onFailure(call: Call<ArrayList<Country>>, t: Throwable) {
                 t.printStackTrace()
             }

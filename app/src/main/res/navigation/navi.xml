@@ -13,14 +13,20 @@
         <action
             android:id="@+id/action_firstFragment_to_countryFragment2"
             app:destination="@id/countryFragment2" />
+
     </fragment>
     <fragment
         android:id="@+id/countryFragment2"
         android:name="com.example.kotlincountrylist.CountryFragment"
         android:label="CountryFragment"
         tools:layout="@layout/fragment_country">
+
         <action
             android:id="@+id/action_countryFragment2_to_firstFragment"
             app:destination="@id/firstFragment" />
+
+        <argument
+            android:name="countryItem"
+            app:argType="com.example.kotlincountrylist.model.Country" />
     </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.kotlincountrylist.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,24 +17,17 @@ import com.example.kotlincountrylist.databinding.ItemSecBinding
 import com.example.kotlincountrylist.model.Country
 import com.example.kotlincountrylist.model.Model
 
-class FirstAdapter(modelList: List<Country>) : RecyclerView.Adapter<FirstAdapter.FirstViewHolder>() , ItemClickListener{
+class FirstAdapter(modelList: List<Country>, val onClick: (county: Country) -> Unit)//onClick yine ust sinifa bildirim gondermek icin
+    : RecyclerView.Adapter<FirstAdapter.FirstViewHolder>(), ItemClickListener {
 
-    private var modelList: List<Country>
+    private var modelList: List<Country> = modelList//inite gerek kalmiyor
 
     class FirstViewHolder(binding: ItemSecBinding) : RecyclerView.ViewHolder(binding.root) {
         val itemBinding: ItemSecBinding = binding//class elemani olarak tanımladım
-
     }
 
-    init {
-        this.modelList = modelList
-    }
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): FirstViewHolder {
-        //val inflater=LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FirstViewHolder {
+        //val inflater=LayoutInflater.from(parent.context) art,ik data binding ile inflate yapilacak
         val binding: ItemSecBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             R.layout.item_sec,
@@ -47,18 +41,14 @@ class FirstAdapter(modelList: List<Country>) : RecyclerView.Adapter<FirstAdapter
         val context = holder.itemView.context
         val country = modelList[position]
 
-        holder.itemBinding.data = country
-
+        holder.itemBinding.data = country//data bindinge ile verimi attim artik
         Glide.with(context).load(country.countryFlag)
             .skipMemoryCache(true)
-            .into(holder.itemBinding.flagIV)
+            .into(holder.itemBinding.flagIV)//resimleri yuklemek icin glide veya picasso kutuphanesi
 
-        holder.itemView.setOnClickListener {
-            val action=FirstFragmentDirections.actionFirstFragmentToCountryFragment2()
-            //FragmentCountryBinding
-            Navigation.findNavController(it).navigate(action)
+        holder.itemBinding.itemLinear.setOnClickListener {
+            onClick(country)
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -67,8 +57,5 @@ class FirstAdapter(modelList: List<Country>) : RecyclerView.Adapter<FirstAdapter
 
     override fun onItemClick(view: View) {
         super.onItemClick(view)
-        view.setOnClickListener {
-        }
     }
-
 }

@@ -1,6 +1,7 @@
 package com.example.kotlincountrylist.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Country(
     @SerializedName("name")
@@ -15,4 +16,4 @@ data class Country(
     val countryLanguage: String?,
     @SerializedName("flag")
     val countryFlag: String?
-)
+) : Serializable

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 
 class SecFragment : Fragment() {
 
+    var id = "1100"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -16,8 +18,6 @@ class SecFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.item_sec, container, false)
     }
-
-
 
 
 }

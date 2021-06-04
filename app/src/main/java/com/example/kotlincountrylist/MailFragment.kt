@@ -1,4 +1,4 @@
-package com.example.kotlincountrylist.adapter
+package com.example.kotlincountrylist
 
 import android.content.Intent
 import android.content.IntentSender
@@ -24,7 +24,10 @@ class MailFragment : Fragment() {
 
         send.setOnClickListener {
             val intent=Intent(Intent.ACTION_SEND)
-            //intent.putExtra
+            intent.setType("text/html")
+            intent.putExtra(Intent.EXTRA_EMAIL,hesap.text.toString())
+            intent.putExtra(Intent.EXTRA_SUBJECT,konu.text.toString())
+            intent.putExtra(Intent.EXTRA_TEXT,icerik.text.toString())
 
         }
         hesap.text.toString()

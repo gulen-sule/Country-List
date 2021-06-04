@@ -16,6 +16,7 @@ import com.google.gson.Gson
 class CountryFragment : Fragment() {
     private lateinit var dataBinding: FragmentCountryBinding
 
+    var id = "515645"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +36,7 @@ class CountryFragment : Fragment() {
         dataBinding.data = country
         Glide.with(view.context).load(country!!.countryFlag)
             .into(view.findViewById(R.id.FlagIV2)as ImageView)
+        //Picasso.get().load(country.countryFlag).into(holder.itemBinding.flagIV)
     }
 
 }

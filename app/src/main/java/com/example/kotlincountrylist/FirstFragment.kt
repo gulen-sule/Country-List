@@ -69,7 +69,7 @@ class FirstFragment : Fragment() {
             val action = FirstFragmentDirections.actionFirstFragmentToMailFragment2()
             Navigation.findNavController(requireView()).navigate(action)
 
-            NavHostController(requireContext()).navigateUp()
+           // NavHostController(requireContext()).navigateUp()
 
             //(requireActivity() as MainActivity).binding.fragment.findNavController().navigate()
         }

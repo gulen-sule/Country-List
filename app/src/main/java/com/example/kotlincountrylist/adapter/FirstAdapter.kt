@@ -16,6 +16,7 @@ import com.example.kotlincountrylist.databinding.FragmentFirstBinding
 import com.example.kotlincountrylist.databinding.ItemSecBinding
 import com.example.kotlincountrylist.model.Country
 import com.example.kotlincountrylist.model.Model
+import com.squareup.picasso.Picasso
 
 class FirstAdapter(modelList: List<Country>, val onClick: (county: Country) -> Unit)//onClick yine ust sinifa bildirim gondermek icin
     : RecyclerView.Adapter<FirstAdapter.FirstViewHolder>(), ItemClickListener {
@@ -42,9 +43,9 @@ class FirstAdapter(modelList: List<Country>, val onClick: (county: Country) -> U
         val country = modelList[position]
 
         holder.itemBinding.data = country//data bindinge ile verimi attim artik
-        Glide.with(context).load(country.countryFlag)
-            .skipMemoryCache(true)
-            .into(holder.itemBinding.flagIV)//resimleri yuklemek icin glide veya picasso kutuphanesi
+//        Glide.with(context).load(country.countryFlag).skipMemoryCache(true)
+//            .into(holder.itemBinding.flagIV)//resimleri yuklemek icin glide veya picasso kutuphanesi
+        Picasso.get().load(country.countryFlag).into(holder.itemBinding.flagIV)
 
         holder.itemBinding.itemLinear.setOnClickListener {
             onClick(country)

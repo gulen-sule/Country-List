@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 <data>
     <variable
         name="data"
         type="com.example.kotlincountrylist.model.Country" />
 
 </data>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <ImageView
                 android:id="@+id/FlagIV2"
@@ -46,7 +45,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="15dp"
                 android:text="@{data.countryName}"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -84,6 +83,21 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
                 android:text="@{data.countryLanguage}"/>
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Language"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

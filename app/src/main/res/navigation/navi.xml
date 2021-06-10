@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_firstFragment_to_countryFragment2"
             app:destination="@id/countryFragment2" />
+        <action
+            android:id="@+id/action_firstFragment_to_mailFragment"
+            app:destination="@id/mailFragment" />
 
     </fragment>
     <fragment
@@ -24,9 +27,18 @@
         <action
             android:id="@+id/action_countryFragment2_to_firstFragment"
             app:destination="@id/firstFragment" />
-
         <argument
-            android:name="countryItem"
+            android:name="data"
             app:argType="com.example.kotlincountrylist.model.Country" />
     </fragment>
+    <fragment
+        android:id="@+id/mailFragment"
+        android:name="com.example.kotlincountrylist.MailFragment"
+        android:label="MailFragment"
+        tools:layout="@layout/mail_fragment">
+        <action
+            android:id="@+id/action_mailFragment_to_firstFragment"
+            app:destination="@id/firstFragment" />
+    </fragment>
+
 </navigation>

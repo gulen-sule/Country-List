@@ -33,7 +33,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/item_sec" />
-<!--                son satir ile hangi itemleri barindiracagini seciyorsun-->
+                <!--  son satir ile hangi itemleri barindiracagini seciyorsun-->
 
                 <TextView
                     android:id="@+id/countryError"
@@ -47,24 +47,31 @@
 
                 <ProgressBar
                     android:id="@+id/Countryloading"
+                    style="@style/Widget.MaterialComponents.CircularProgressIndicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/teal_700"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" /><!--   indetermine =true ile  asenkron olarak donmesini sagladi-->
+
+                <ImageButton
+                    android:id="@+id/messageButton"
+                    android:layout_width="81dp"
+                    android:layout_height="78dp"
+                    android:layout_marginBottom="16dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.951"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/messageicon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 val fragment = getFragmentFind<CountryFragment>()
                 fragment?.let {
                     //it.loadPage()
-                    Log.d("fragmentForEachTAG", it.id)
+                    Log.d("fragmentForEachTAG", it.id.toString())
                 }
             }
         }

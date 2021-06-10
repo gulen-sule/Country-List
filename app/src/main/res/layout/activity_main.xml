@@ -18,6 +18,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <SearchView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/myToolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -31,7 +39,6 @@
             app:layout_constraintTop_toBottomOf="@+id/myToolbar"
             app:navGraph="@navigation/navi"
             />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

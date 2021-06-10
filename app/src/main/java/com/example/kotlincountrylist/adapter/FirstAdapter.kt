@@ -39,7 +39,6 @@ class FirstAdapter(modelList: List<Country>, val onClick: (county: Country) -> U
     }
 
     override fun onBindViewHolder(holder: FirstViewHolder, position: Int) {
-        val context = holder.itemView.context
         val country = modelList[position]
 
         holder.itemBinding.data = country//data bindinge ile verimi attim artik

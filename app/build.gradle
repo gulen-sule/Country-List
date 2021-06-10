@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id "androidx.navigation.safeargs"
     id 'kotlin-kapt'
+    id 'com.google.secrets_gradle_plugin' version '0.5'
 }
 
 android {
@@ -40,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+
 //    def lifeCycleExtensionVersion = '1.1.1'
 //    def supportVersion = '28.0.0'
 //    def retrofitVersion = '2.3.0'
@@ -83,5 +86,9 @@ dependencies {
     implementation "androidx.preference:preference:1.1.1"
     implementation "com.github.bumptech.glide:glide:4.12.0"
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'com.sun.mail:android-mail:1.6.0'
+    implementation 'com.sun.mail:android-activation:1.6.0'
+
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
 }
